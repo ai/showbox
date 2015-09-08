@@ -11,7 +11,9 @@
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": "ai/showbox",
+  "bin": "lib/cli.js",
   "dependencies": {
+    "yargs": "3.24.0"
   },
   "devDependencies": {
     "gulp-json-editor": "2.2.1",
