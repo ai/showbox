@@ -1,0 +1,29 @@
+{
+  "name": "showbox",
+  "version": "0.0.0",
+  "description": "Tool for transforming styles with JS plugins",
+  "keywords": [
+    "slides",
+    "keynotes",
+    "talk",
+    "presentation"
+  ],
+  "author": "Andrey Sitnik <andrey@sitnik.ru>",
+  "license": "MIT",
+  "repository": "ai/showbox",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gulp-json-editor": "2.2.1",
+    "babel-eslint":     "4.1.1",
+    "gulp-eslint":      "1.0.0",
+    "gulp-babel":       "5.2.1",
+    "babel-core":       "5.8.23",
+    "eslint":           "1.3.1",
+    "gulp":             "3.9.0",
+    "del":              "2.0.1"
+  },
+  "scripts": {
+    "test": "gulp"
+  }
+}

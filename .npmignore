@@ -1,0 +1,13 @@
+.gitignore
+
+node_modules/
+npm-debug.log
+
+build/
+
+test/
+.travis.yml
+
+gulpfile.babel.js
+
+coverage/
