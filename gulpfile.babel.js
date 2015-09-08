@@ -38,6 +38,9 @@ gulp.task('lint', () => {
 // Tests
 
 gulp.task('test', () => {
+    require('babel-core/register')({ extensions: ['.es6'] });
+    let mocha = require('gulp-mocha');
+    return gulp.src('test/*.es6', { read: false }).pipe(mocha());
 });
 
 // Common
