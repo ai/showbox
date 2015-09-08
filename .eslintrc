@@ -49,7 +49,6 @@
     "no-self-compare":             [2],
     "no-octal-escape":             [2],
     "no-new-wrappers":             [2],
-    "no-process-exit":             [2],
     "linebreak-style":             [2],
     "space-infix-ops":             [2],
     "space-unary-ops":             [2],
