@@ -31,7 +31,7 @@ export default function commands(root) {
                 let [name, param] = parse(command);
                 if ( name === 'type' ) {
                     if ( !data.types ) data.types = [];
-                    data.types.push(param)
+                    data.types.push(param);
                 } else {
                     data[name] = param;
                 }
