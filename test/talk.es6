@@ -37,4 +37,14 @@ describe('Talk', () => {
 
     });
 
+    describe('css', () => {
+
+        it('extracts styles', () => {
+            let slide = build('# Title\n\n<style>a {\n}</style>');
+            expect(slide.css).to.eql('a {\n}');
+            expect(slide.body).to.eql('<h1>Title</h1>');
+        });
+
+    });
+
 });

@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 
-import styles from '../lib/styles';
+import compileCSS from '../lib/compile-css';
 
-describe('styles()', () => {
+describe('compileCSS()', () => {
 
     it('compresses CSS', (done) => {
-        styles({
+        compileCSS({
             html: '<b>',
             css:  'a { -o-border-radius: 5px; border-radius: 5px }'
         }).then( (data) => {
