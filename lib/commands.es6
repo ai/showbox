@@ -1,7 +1,7 @@
 import path from 'path';
 
 import ShowboxError from './showbox-error';
-import image        from './image';
+import inlineImage  from './inline-image';
 
 function parse(str) {
     let match = str.match(/!([^\s]+)(\s(.*))?/);
@@ -30,20 +30,31 @@ export default function commands(root, base) {
     };
     let data = { };
 
+    let image = function (file) {
+        changed.children.push({
+            type:  'html',
+            value: inlineImage(path.join(base, file))
+        });
+    };
+    let type = function (name) {
+        if ( !data.types ) data.types = [];
+        data.types.push(name);
+    }
+
     for ( let i of root.children ) {
         if ( isCommand(i) ) {
             for ( let command of split(i) ) {
                 let [name, param] = parse(command);
 
                 if ( name === 'type' ) {
-                    if ( !data.types ) data.types = [];
-                    data.types.push(param);
+                    type(param);
 
                 } else if ( name === 'image' ) {
-                    changed.children.push({
-                        type:  'html',
-                        value: image(path.join(base, param))
-                    });
+                    image(param);
+
+                } else if ( name === 'cover' ) {
+                    image(param);
+                    type('cover');
 
                 } else if ( name === 'theme' ) {
                     data.theme = param;

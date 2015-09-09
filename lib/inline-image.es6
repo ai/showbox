@@ -3,7 +3,7 @@ import fs   from 'fs';
 
 import ShowboxError from './showbox-error';
 
-export default function image(path) {
+export default function inlineImage(path) {
     let file;
     try {
         file = fs.readFileSync(path);
