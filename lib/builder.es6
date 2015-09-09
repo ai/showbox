@@ -1,21 +1,6 @@
-import markdown from './markdown';
-import split    from './split';
-import Slide    from './slide';
-import Talk     from './talk';
+import parse from './parse';
 
 export default function bundler(input) {
-    let root  = markdown.parse(input);
-    let parts = split(root);
-
-    let talk;
-    for ( let part of parts ) {
-        if ( !talk ) {
-            talk = new Talk(part);
-        } else {
-            let slide = new Slide(part);
-            talk.slides.push(slide);
-        }
-    }
-
+    let talk = parse(input);
     return '';
 }
