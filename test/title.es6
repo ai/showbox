@@ -1,5 +1,5 @@
-import { expect } from 'chai';
 import   mdast    from 'mdast';
+import { expect } from 'chai';
 
 import title from '../lib/title';
 

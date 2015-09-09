@@ -10,6 +10,20 @@ function build(md) {
 
 describe('Slide', () => {
 
+    describe('types', () => {
+
+        it('is empty by default', () => {
+            let slide = build('## Title\n\nHi');
+            expect(slide.types).to.eql([]);
+        });
+
+        it('fills by commands', () => {
+            let slide = build('## Title\n!type a\n!type b c\n\nHi');
+            expect(slide.types).to.eql(['a', 'b c']);
+        });
+
+    });
+
     describe('body', () => {
 
         it('saves title', () => {

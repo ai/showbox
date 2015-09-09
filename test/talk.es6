@@ -1,5 +1,5 @@
-import { expect } from 'chai';
 import   mdast    from 'mdast';
+import { expect } from 'chai';
 
 import Talk from '../lib/talk';
 
@@ -15,6 +15,15 @@ describe('Talk', () => {
         it('saves title', () => {
             let talk = build('# Title\n\nHi');
             expect(talk.title).to.eql('Title');
+        });
+
+    });
+
+    describe('theme', () => {
+
+        it('saves theme', () => {
+            let talk = build('# Title\n!theme cool');
+            expect(talk.theme).to.eql('cool');
         });
 
     });

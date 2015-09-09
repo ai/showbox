@@ -1,6 +1,6 @@
-import { expect } from 'chai';
-import   mdast    from 'mdast';
 import   html     from 'mdast-html';
+import   mdast    from 'mdast';
+import { expect } from 'chai';
 
 import split from '../lib/split';
 
