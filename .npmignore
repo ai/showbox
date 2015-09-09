@@ -10,5 +10,3 @@ test/
 .travis.yml
 
 gulpfile.babel.js
-
-coverage/
