@@ -27,11 +27,12 @@ if ( command === 'build' ) {
     fs.readFile(file, (err, input) => {
         if ( err ) error('Can\'t read keynotes file ' + file, 127);
 
-        let output = builder(input.toString());
-        let html   = file.replace(/.md$/i, '') + '.html';
-        fs.writeFile(html, output, (err2) => {
-            if ( err2 ) error('Can\'t save result to ' + html);
-        });
+        builder(input.toString(), { file }).then( (output) => {
+            let html = file.replace(/.md$/i, '') + '.html';
+            fs.writeFile(html, output, (err2) => {
+                if ( err2 ) error('Can\'t save result to ' + html);
+            });
+        }).catch( err2 => error(err2.stack) );
     });
 
 } else {
