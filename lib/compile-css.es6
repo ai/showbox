@@ -1,10 +1,20 @@
+import nested       from 'postcss-nested';
 import autoprefixer from 'autoprefixer';
 import postcss      from 'postcss';
 import cssnano      from 'cssnano';
 
-export default function compileCSS(data) {
-    let plugins = [autoprefixer({ browsers: 'last 2 version' }), cssnano];
-    return postcss(plugins).process(data.css).then( (result) => {
+export default function compileCSS(talk, data) {
+    let css = data.css + talk.css;
+    for ( let i = 0; i < talk.slides.length; i++ ) {
+        css += data.slide(i) + ' {' + talk.slides[i].css + '}';
+    }
+
+    let plugins = [
+        nested,
+        autoprefixer({ browsers: 'last 2 version' }),
+        cssnano
+    ];
+    return postcss(plugins).process(css).then( (result) => {
         return { ...data, css: result.css };
     });
 }

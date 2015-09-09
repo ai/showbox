@@ -14,11 +14,12 @@
   "bin": "lib/cli.js",
   "main": "lib/builder",
   "dependencies": {
-    "autoprefixer": "6.0.2",
-    "browser-sync": "2.9.3",
-    "cssnano":      "3.0.1",
-    "postcss":      "5.0.4",
-    "yargs":        "3.24.0"
+    "postcss-nested": "1.0.0",
+    "autoprefixer":   "6.0.2",
+    "browser-sync":   "2.9.3",
+    "cssnano":        "3.0.1",
+    "postcss":        "5.0.4",
+    "yargs":          "3.24.0"
   },
   "devDependencies": {
     "gulp-json-editor": "2.2.1",

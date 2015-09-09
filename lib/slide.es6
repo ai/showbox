@@ -5,7 +5,7 @@ import commands   from './commands';
 export default class Slide {
 
     constructor(root) {
-        let data, css;
+        let data;
         [root, data]     = commands(root);
         [root, this.css] = extractCSS(root);
         this.types = data.types || [];
