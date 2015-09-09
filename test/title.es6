@@ -8,7 +8,7 @@ function test(md, result) {
     expect(title(root)).to.eql(result);
 }
 
-describe('split()', () => {
+describe('title()', () => {
 
     it('returns empty string by default', () => {
         test('Hi', '');
