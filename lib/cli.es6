@@ -27,8 +27,8 @@ function error(message, code = 1) {
 if ( command === 'build' ) {
     if ( !file ) error('Keynotes file is missed');
     buildFile(file).catch( (err) => {
-        if ( typeof err === 'string' ) {
-            error(err);
+        if ( err.name === 'ShowboxError' ) {
+            error(err.message);
         } else {
             error(err.stack);
         }
@@ -37,8 +37,8 @@ if ( command === 'build' ) {
 } else if ( command === 'server' ) {
     if ( !file ) error('Keynotes file is missed');
     server(file, (err) => {
-        if ( typeof err === 'string' ) {
-            console.error(err);
+        if ( err.name === 'ShowboxError' ) {
+            console.error(err.message);
         } else {
             console.error(err.stack);
         }
