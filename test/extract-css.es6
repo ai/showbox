@@ -7,7 +7,7 @@ function build(md) {
     return extractCSS(mdast().parse(md));
 }
 
-describe('extractCSS', () => {
+describe('extractCSS()', () => {
 
     it('removes style tags', () => {
         let root = build('<style></style>\n\nTest')[0];

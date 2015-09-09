@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import parse from '../lib/parse';
 
-describe('parse', () => {
+describe('parse()', () => {
 
     it('parses input markdown to classes', () => {
         let talk = parse('# Talk\n\n## S1\n\n## S2');

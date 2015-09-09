@@ -6,10 +6,15 @@ import layout     from './layout';
 import parse      from './parse';
 
 export default function bundler(input, opts = { }) {
-    let talk = parse(input);
-
     let base = '.';
     if ( opts.file ) base = path.dirname(opts.file);
+
+    let talk;
+    try {
+        talk = parse(input, base);
+    } catch (e) {
+        return new Promise( (resolve, reject) => reject(e) );
+    }
 
     let theme = require(resolve.sync(talk.theme, { basedir: base }));
     return theme(talk)

@@ -4,9 +4,9 @@ import commands   from './commands';
 
 export default class Slide {
 
-    constructor(root) {
+    constructor(root, base) {
         let data;
-        [root, data]     = commands(root);
+        [root, data]     = commands(root, base);
         [root, this.css] = extractCSS(root);
         this.types = data.types || [];
         this.body  = markdown.stringify(root).trim();

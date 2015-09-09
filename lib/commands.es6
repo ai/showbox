@@ -1,4 +1,7 @@
+import path from 'path';
+
 import ShowboxError from './showbox-error';
+import image        from './image';
 
 function parse(str) {
     let match = str.match(/!([^\s]+)(\s(.*))?/);
@@ -19,7 +22,7 @@ function split(node) {
     return node.children[0].value.split('\n').map( s => s.trim() );
 }
 
-export default function commands(root) {
+export default function commands(root, base) {
     let changed = {
         type:     root.type,
         children: [],
@@ -31,11 +34,20 @@ export default function commands(root) {
         if ( isCommand(i) ) {
             for ( let command of split(i) ) {
                 let [name, param] = parse(command);
+
                 if ( name === 'type' ) {
                     if ( !data.types ) data.types = [];
                     data.types.push(param);
+
+                } else if ( name === 'image' ) {
+                    changed.children.push({
+                        type:  'html',
+                        value: image(path.join(base, param))
+                    });
+
                 } else if ( name === 'theme' ) {
                     data.theme = param;
+
                 } else {
                     throw new ShowboxError('Unknown command !' + name);
                 }

@@ -4,11 +4,11 @@ import { expect } from 'chai';
 import ShowboxError from '../lib/showbox-error';
 import commands     from '../lib/commands';
 
-function build(md) {
-    return commands(mdast().parse(md));
+function build(md, base) {
+    return commands(mdast().parse(md), base);
 }
 
-describe('commands', () => {
+describe('commands()', () => {
 
     it('removes commands', () => {
         let root = build('A\n\n!type 1\n!type 2\n\nD\n\n!type 3\n\nE\n')[0];
@@ -28,6 +28,13 @@ describe('commands', () => {
     it('saves theme', () => {
         let data = build('!theme 1\n\n!theme 2')[1];
         expect(data).to.eql({ theme: '2' });
+    });
+
+    it('inlines image', () => {
+        let root = build('!image data/dot.png', __dirname)[0];
+        expect(mdast().stringify(root)).to.eql('<img src="data:image/png;' +
+            'base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQ' +
+            'VQIHWP4DwABAQEANl9ngAAAAABJRU5ErkJggg==">\n');
     });
 
     it('raise on unknown command', () => {

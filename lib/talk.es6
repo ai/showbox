@@ -5,9 +5,9 @@ import title      from './title';
 
 export default class Talk {
 
-    constructor(root) {
+    constructor(root, base = '.') {
         let data;
-        [root, data]     = commands(root);
+        [root, data]     = commands(root, base);
         [root, this.css] = extractCSS(root);
         this.title  = title(root);
         this.body   = markdown.stringify(root).trim();
