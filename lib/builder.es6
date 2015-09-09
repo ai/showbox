@@ -12,7 +12,7 @@ export default function bundler(input, opts = { }) {
 
     let theme = require(resolve.sync(talk.theme, { basedir: base }));
 
-    return new theme(talk).then( (data) => {
+    return theme(talk).then( (data) => {
         return layout(talk, data);
     });
 }
