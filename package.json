@@ -12,6 +12,7 @@
   "license": "MIT",
   "repository": "ai/showbox",
   "bin": "lib/cli.js",
+  "main": "lib/builder",
   "dependencies": {
     "yargs": "3.24.0"
   },
