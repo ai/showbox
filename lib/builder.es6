@@ -1,6 +1,7 @@
 import resolve from 'resolve';
 import path    from 'path';
 
+import styles from './styles';
 import layout from './layout';
 import parse  from './parse';
 
@@ -12,7 +13,7 @@ export default function bundler(input, opts = { }) {
 
     let theme = require(resolve.sync(talk.theme, { basedir: base }));
 
-    return theme(talk).then( (data) => {
-        return layout(talk, data);
-    });
+    return theme(talk)
+        .then( data => styles(data) )
+        .then( data => layout(talk, data) );
 }

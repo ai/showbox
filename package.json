@@ -14,7 +14,10 @@
   "bin": "lib/cli.js",
   "main": "lib/builder",
   "dependencies": {
-    "yargs": "3.24.0"
+    "autoprefixer": "6.0.2",
+    "cssnano":      "3.0.1",
+    "postcss":      "5.0.4",
+    "yargs":        "3.24.0"
   },
   "devDependencies": {
     "gulp-json-editor": "2.2.1",
