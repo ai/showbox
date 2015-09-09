@@ -1,13 +1,15 @@
 import yargs from 'yargs';
-import fs    from 'fs';
 
-import builder from './builder';
-import npm     from '../package';
+import buildFile from './build-file';
+import server    from './server';
+import npm       from '../package';
 
 let argv = yargs
     .usage('Usage: $0 COMMAND FILE')
+    .example('$0 server talk.md')
     .example('$0 build talk.md')
     .command('build', 'Compile keynotes to HTML and put it in same dir')
+    .command('server', 'Start server with live-reload')
     .help('h')
     .alias('h', 'help')
     .version( () => npm.name + ' ' + npm.version )
@@ -24,15 +26,22 @@ function error(message, code = 1) {
 
 if ( command === 'build' ) {
     if ( !file ) error('Keynotes file is missed');
-    fs.readFile(file, (err, input) => {
-        if ( err ) error('Can\'t read keynotes file ' + file, 127);
+    buildFile(file).catch( (err) => {
+        if ( typeof err === 'string' ) {
+            error(err);
+        } else {
+            error(err.stack);
+        }
+    });
 
-        builder(input.toString(), { file }).then( (output) => {
-            let html = file.replace(/.md$/i, '') + '.html';
-            fs.writeFile(html, output, (err2) => {
-                if ( err2 ) error('Can\'t save result to ' + html);
-            });
-        }).catch( err2 => error(err2.stack) );
+} else if ( command === 'server' ) {
+    if ( !file ) error('Keynotes file is missed');
+    server(file, (err) => {
+        if ( typeof err === 'string' ) {
+            console.error(err);
+        } else {
+            console.error(err.stack);
+        }
     });
 
 } else {
