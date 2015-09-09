@@ -1,3 +1,5 @@
+import ShowboxError from './showbox-error';
+
 function parse(str) {
     let match = str.match(/!([^\s]+)(\s(.*))?/);
     if ( match ) {
@@ -32,8 +34,10 @@ export default function commands(root) {
                 if ( name === 'type' ) {
                     if ( !data.types ) data.types = [];
                     data.types.push(param);
+                } else if ( name === 'theme' ) {
+                    data.theme = param;
                 } else {
-                    data[name] = param;
+                    throw new ShowboxError('Unknown command !' + name);
                 }
             }
 

@@ -1,7 +1,8 @@
 import   mdast    from 'mdast';
 import { expect } from 'chai';
 
-import commands from '../lib/commands';
+import ShowboxError from '../lib/showbox-error';
+import commands     from '../lib/commands';
 
 function build(md) {
     return commands(mdast().parse(md));
@@ -9,29 +10,30 @@ function build(md) {
 
 describe('commands', () => {
 
-    it('removes commdands', () => {
-        let root = build('A\n\n!a\n!b\nC\n\nD\n\n!c\n\nE\n')[0];
+    it('removes commands', () => {
+        let root = build('A\n\n!type 1\n!type 2\n\nD\n\n!type 3\n\nE\n')[0];
         expect(mdast().stringify(root)).to.eql('A\n\nD\n\nE\n');
     });
 
-    it('saves unknown command', () => {
-        let data = build('!a 1\n\n!b 2')[1];
-        expect(data).to.eql({ a: '1', b: '2' });
+    it('processes type as array', () => {
+        let data = build('!type 1\n\n!type 2')[1];
+        expect(data).to.eql({ types: ['1', '2'] });
     });
 
     it('works with several commands in paragraph', () => {
-        let data = build('!a 1\n!b 2')[1];
-        expect(data).to.eql({ a: '1', b: '2' });
-    });
-
-    it('works with different parameters', () => {
-        let data = build('!a 1 2\n!b')[1];
-        expect(data).to.eql({ a: '1 2', b: undefined });
-    });
-
-    it('processes type as array', () => {
         let data = build('!type 1\n!type 2')[1];
         expect(data).to.eql({ types: ['1', '2'] });
+    });
+
+    it('saves theme', () => {
+        let data = build('!theme 1\n\n!theme 2')[1];
+        expect(data).to.eql({ theme: '2' });
+    });
+
+    it('raise on unknown command', () => {
+        expect( () => {
+            build('!not 1');
+        }).to.throw(ShowboxError, 'Unknown command !not');
     });
 
 });

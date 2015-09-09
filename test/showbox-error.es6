@@ -15,6 +15,6 @@ describe('ShowboxError', () => {
         expect(error.name).to.eql('ShowboxError');
         expect(error.message).to.eql('test');
         expect(error.stack).to.include('showbox-error');
-    })
+    });
 
 });
