@@ -55,6 +55,7 @@ export default function commands(root, base) {
                 } else if ( name === 'cover' ) {
                     image(param);
                     type('cover');
+                    type('h');
 
                 } else if ( name === 'theme' ) {
                     data.theme = param;

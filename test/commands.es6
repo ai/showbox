@@ -39,7 +39,7 @@ describe('commands()', () => {
 
     it('inlines covers', () => {
         let [root, data] = build('!cover data/dot.png', __dirname);
-        expect(data).to.eql({ types: ['cover'] });
+        expect(data).to.eql({ types: ['cover', 'h'] });
         expect(mdast().stringify(root)).to.eql('<img src="data:image/png;' +
             'base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQ' +
             'VQIHWP4DwABAQEANl9ngAAAAABJRU5ErkJggg==">\n');
