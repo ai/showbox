@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import yargs from 'yargs';
 
 import buildFile from './build-file';
@@ -19,31 +20,42 @@ let argv = yargs
 let command = argv._[0];
 let file    = argv._[1];
 
-function error(message, code = 1) {
-    console.error('showbox: ' + message);
-    process.exit(code);
+function exitError(text) {
+    console.error('showbox: ' + text);
+    process.exit(1);
+}
+
+function processError(err) {
+    if ( err.name === 'ShowboxError' ) {
+        exitError(err.message);
+    } else {
+        exitError(err.stack);
+    }
+}
+
+function colorError(text) {
+    console.error(
+        '[' + chalk.blue('showbox') + '] ' +
+        chalk.red('Error: ') +
+        chalk.yellow(text));
 }
 
 if ( command === 'build' ) {
-    if ( !file ) error('Keynotes file is missed');
-    buildFile(file).catch( (err) => {
-        if ( err.name === 'ShowboxError' ) {
-            error(err.message);
-        } else {
-            error(err.stack);
-        }
-    });
+    if ( !file ) exitError('Keynotes file is missed');
+    buildFile(file).catch(processError);
 
 } else if ( command === 'server' ) {
-    if ( !file ) error('Keynotes file is missed');
-    server(file, (err) => {
-        if ( err.name === 'ShowboxError' ) {
-            console.error(err.message);
+    if ( !file ) exitError('Keynotes file is missed');
+    server(file, (critical, err) => {
+        if ( critical ) {
+            processError(err);
+        } else if ( err.name === 'ShowboxError' ) {
+            colorError(err.message);
         } else {
-            console.error(err.stack);
+            colorError(err.stack);
         }
     });
 
 } else {
-    error('Unknow command ' + command);
+    exitError('Unknow command ' + command);
 }

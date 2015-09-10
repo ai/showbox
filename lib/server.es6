@@ -7,7 +7,7 @@ export default function server(file, error) {
     let bs = browserSync.create();
 
     bs.watch(file).on('change', () => {
-        buildFile(file).then(bs.reload).catch(error);
+        buildFile(file).then(bs.reload).catch(error.bind(this, false));
     });
 
     buildFile(file).then( (output) => {
@@ -18,5 +18,5 @@ export default function server(file, error) {
             server:    path.dirname(output),
             notify:    false
         });
-    }).catch(error);
+    }).catch(error.bind(this, true));
 }
