@@ -13,7 +13,7 @@ export default function bundler(input, opts = { }) {
     try {
         talk = parse(input, base);
     } catch (e) {
-        return new Promise( (resolve, reject) => reject(e) );
+        return Promise.reject(e);
     }
 
     let theme = require(resolve.sync(talk.theme, { basedir: base }));

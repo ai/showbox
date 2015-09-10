@@ -33,13 +33,13 @@ export default function commands(root, base) {
     let image = function (file) {
         changed.children.push({
             type:  'html',
-            value: inlineImage(path.join(base, file))
+            value: '<img src="' + inlineImage(path.join(base, file)) + '">'
         });
     };
     let type = function (name) {
         if ( !data.types ) data.types = [];
         data.types.push(name);
-    }
+    };
 
     for ( let i of root.children ) {
         if ( isCommand(i) ) {
