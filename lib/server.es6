@@ -7,7 +7,9 @@ export default function server(file, error) {
     let bs = browserSync.create();
 
     bs.watch(file).on('change', () => {
-        buildFile(file).then(bs.reload).catch(error.bind(this, false));
+        setTimeout( () => {
+            buildFile(file).then(bs.reload).catch(error.bind(this, false));
+        }, 1);
     });
 
     buildFile(file).then( (output) => {
