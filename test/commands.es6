@@ -45,6 +45,13 @@ describe('commands()', () => {
             'VQIHWP4DwABAQEANl9ngAAAAABJRU5ErkJggg==">\n');
     });
 
+    it('inlines covers', () => {
+        let [root, data] = build('!favicon data/dot.png', __dirname);
+        expect(data.favicon).to.eql('data:image/png;base64,' +
+            'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAA' +
+            'CklEQVQIHWP4DwABAQEANl9ngAAAAABJRU5ErkJggg==');
+    });
+
     it('raise on unknown command', () => {
         expect( () => {
             build('!not 1');

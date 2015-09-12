@@ -57,6 +57,9 @@ export default function commands(root, base) {
                     type('cover');
                     type('h');
 
+                } else if ( name === 'favicon' ) {
+                    data.favicon = inlineImage(path.join(base, param));
+
                 } else if ( name === 'theme' ) {
                     data.theme = param;
 

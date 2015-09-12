@@ -5,10 +5,26 @@ import Talk from '../lib/talk';
 
 function build(md) {
     let root = mdast().parse(md);
-    return new Talk(root);
+    return new Talk(root, __dirname);
 }
 
 describe('Talk', () => {
+
+    describe('favicon', () => {
+
+        it('is false by defails', () => {
+            let talk = build('# Title');
+            expect(talk.favicon).to.be.false;
+        });
+
+        it('saves favicon', () => {
+            let talk = build('# Title\n!favicon data/dot.png');
+            expect(talk.favicon).to.eql('data:image/png;base64,' +
+                'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAA' +
+                'CklEQVQIHWP4DwABAQEANl9ngAAAAABJRU5ErkJggg==');
+        });
+
+    });
 
     describe('title', () => {
 

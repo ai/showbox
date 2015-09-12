@@ -9,10 +9,11 @@ export default class Talk {
         let data;
         [root, data]     = commands(root, base);
         [root, this.css] = extractCSS(root);
-        this.title  = title(root);
-        this.body   = markdown.stringify(root).trim();
-        this.theme  = data.theme;
-        this.slides = [];
+        this.favicon = data.favicon || false;
+        this.title   = title(root);
+        this.body    = markdown.stringify(root).trim();
+        this.theme   = data.theme;
+        this.slides  = [];
     }
 
 }
