@@ -15,6 +15,7 @@ export default function compileCSS(talk, data) {
         cssnano
     ];
     return postcss(plugins).process(css).then( (result) => {
+        result.warnings().forEach( i => console.warn(i.toString()) );
         return { ...data, css: result.css };
     });
 }
