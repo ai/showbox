@@ -42,6 +42,14 @@ describe('commands()', () => {
             'VQIHWP4DwABAQEANl9ngAAAAABJRU5ErkJggg==">\n');
     });
 
+    it('inlines image with link', () => {
+        let root = build('!image data/dot.png http://ya.ru', __dirname)[0];
+        expect(mdast().stringify(root)).to.eql('<a href="http://ya.ru">' +
+            '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAB' +
+            'CAAAAAA6fptVAAAACklEQVQIHWP4DwABAQEANl9ngAAAAABJRU5ErkJggg==">' +
+            '</a>\n');
+    });
+
     it('inlines covers', () => {
         let [root, data] = build('!cover data/dot.png', __dirname);
         expect(data).to.eql({ types: ['cover', 'h'] });
