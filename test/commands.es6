@@ -30,6 +30,11 @@ describe('commands()', () => {
         expect(data).to.eql({ theme: '2' });
     });
 
+    it('trims spaces', () => {
+        let data = build('!theme  1  2')[1];
+        expect(data).to.eql({ theme: '1  2' });
+    });
+
     it('inlines image', () => {
         let root = build('!image data/dot.png', __dirname)[0];
         expect(mdast().stringify(root)).to.eql('<img src="data:image/png;' +

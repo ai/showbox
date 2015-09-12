@@ -6,7 +6,7 @@ import inlineImage  from './inline-image';
 function parse(str) {
     let match = str.match(/!([^\s]+)(\s(.*))?/);
     if ( match ) {
-        return [match[1], match[3]];
+        return [match[1], match[3].trim()];
     } else {
         return [];
     }
