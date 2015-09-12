@@ -51,7 +51,7 @@ describe('commands()', () => {
     });
 
     it('inlines covers', () => {
-        let [root, data] = build('!favicon data/dot.png', __dirname);
+        let data = build('!favicon data/dot.png', __dirname)[1];
         expect(data.favicon).to.eql('data:image/png;base64,' +
             'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAA' +
             'CklEQVQIHWP4DwABAQEANl9ngAAAAABJRU5ErkJggg==');
