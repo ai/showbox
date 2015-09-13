@@ -30,6 +30,11 @@ describe('commands()', () => {
         expect(data).to.eql({ theme: '2' });
     });
 
+    it('saves lang', () => {
+        let data = build('!lang 1\n\n!lang 2')[1];
+        expect(data).to.eql({ lang: '2' });
+    });
+
     it('trims spaces', () => {
         let data = build('!theme  1  2')[1];
         expect(data).to.eql({ theme: '1  2' });

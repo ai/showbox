@@ -44,6 +44,15 @@ describe('Talk', () => {
 
     });
 
+    describe('lang', () => {
+
+        it('saves lang', () => {
+            let talk = build('# Title\n!lang ru');
+            expect(talk.lang).to.eql('ru');
+        });
+
+    });
+
     describe('body', () => {
 
         it('saves title', () => {

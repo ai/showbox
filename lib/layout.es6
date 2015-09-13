@@ -5,7 +5,7 @@ export default function layout(talk, data) {
     }
 
     return '<!DOCTYPE html>' +
-           '<html>' +
+           '<html lang="' + (talk.lang || 'en') + '">' +
                '<meta charset="UTF-8">' +
                favicon +
                '<title>' + talk.title + '</title>' +

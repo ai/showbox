@@ -68,6 +68,9 @@ export default function commands(root, base) {
                 } else if ( name === 'theme' ) {
                     data.theme = param;
 
+                } else if ( name === 'lang' ) {
+                    data.lang = param;
+
                 } else {
                     throw new ShowboxError('Unknown command !' + name);
                 }

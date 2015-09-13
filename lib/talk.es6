@@ -13,6 +13,7 @@ export default class Talk {
         this.title   = title(root);
         this.body    = markdown.stringify(root).trim();
         this.theme   = data.theme;
+        this.lang    = data.lang;
         this.slides  = [];
     }
 
