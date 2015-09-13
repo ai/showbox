@@ -77,7 +77,9 @@ export default function highlight(root) {
             let html = hljs.highlightAuto(code, [lang]).value;
             html = markPoints(html, points);
             html = '<pre>' +
-                html.split('\n').map( j => `<code>${ j }</code>` ).join('\n') +
+                html.split('\n')
+                    .map( j => j.trim() === '' ? '&nbsp;' : j )
+                    .map( j => `<code>${ j }</code>` ).join('\n') +
             '</pre>';
 
             changed.children.push({ type: 'html', value: html });
