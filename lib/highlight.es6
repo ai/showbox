@@ -18,7 +18,7 @@ export default function highlight(root) {
 
             let html = hljs.highlightAuto(i.value, [lang]).value;
             html = '<pre>' +
-                html.split('\n').map( i => `<code>${ i }</code>` ).join('\n') +
+                html.split('\n').map( j => `<code>${ j }</code>` ).join('\n') +
             '</pre>';
 
             changed.children.push({ type: 'html', value: html });
