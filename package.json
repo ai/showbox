@@ -14,15 +14,15 @@
   "bin": "lib/cli.js",
   "main": "lib/builder",
   "dependencies": {
-    "postcss-nested": "1.0.0",
-    "highlight.js":   "8.8.0",
-    "autoprefixer":   "6.0.2",
-    "browser-sync":   "2.9.3",
-    "mime-types":     "2.1.6",
-    "cssnano":        "3.0.1",
-    "postcss":        "5.0.5",
-    "chalk":          "1.1.1",
-    "yargs":          "3.24.0"
+    "postcss-nested": "^1.0.0",
+    "highlight.js":   "^8.8.0",
+    "autoprefixer":   "^6.0.2",
+    "browser-sync":   "^2.9.3",
+    "mime-types":     "^2.1.6",
+    "cssnano":        "^3.0.1",
+    "postcss":        "^5.0.5",
+    "chalk":          "^1.1.1",
+    "yargs":          "^3.24.0"
   },
   "devDependencies": {
     "gulp-json-editor": "2.2.1",
