@@ -26,4 +26,16 @@ describe('highlight()', () => {
         expect(root.children[0].type).to.eql('code');
     });
 
+    it('marks important parts', () => {
+        let root = build('```js\nvar ***one*** = 1;\n```');
+        expect(root.children[0].value).to.include(
+            '<mark class="important">one</mark>');
+    });
+
+    it('marks important in HTML', () => {
+        let root = build('```js\n1 < 2 && true;\nvar ***one*** = 1;\n```');
+        expect(root.children[0].value).to.include(
+            '<mark class="important">one</mark>');
+    });
+
 });
