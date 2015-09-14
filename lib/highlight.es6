@@ -8,8 +8,8 @@ function extractPoints(text) {
     let trimmed = '';
     let points  = [];
 
-    var pos = 0;
-    for ( var i = 0; i < text.length; i++ ) {
+    let pos = 0;
+    for ( let i = 0; i < text.length; i++ ) {
         if ( text.substr(i, 3) === '***' ) {
             points.push(pos);
             i += 2;
@@ -30,7 +30,7 @@ function markPoints(html, points) {
     let marked  = '';
     let escaped = false;
 
-    for ( var i = 0; i < html.length; i++ ) {
+    for ( let i = 0; i < html.length; i++ ) {
         let char = html[i];
         marked += char;
 
