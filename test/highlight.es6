@@ -32,6 +32,12 @@ describe('highlight()', () => {
             '<mark class="important">one</mark>');
     });
 
+    it('marks important at start', () => {
+        let root = build('```js\n***var*** one = 1;\n```');
+        expect(root.children[0].value).to.include(
+            '<mark class="important">var</mark>');
+    });
+
     it('marks important in HTML', () => {
         let root = build('```js\n1 < 2 && true;\nvar ***one*** = 1;\n```');
         expect(root.children[0].value).to.include(

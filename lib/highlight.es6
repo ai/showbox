@@ -32,36 +32,32 @@ function markPoints(html, points) {
 
     for ( let i = 0; i < html.length; i++ ) {
         let char = html[i];
-        marked += char;
 
-        if ( tag ) {
-            if ( char === '>' ) tag = false;
-            continue;
-        } else if ( escaped ) {
-            if ( char === ';' ) {
-                escaped = false;
-            } else {
-                continue;
-            }
-        } else if ( char === '<' ) {
+        if ( char === '<' ) {
             tag = true;
-            continue;
-        } else if ( char === '&' ) {
+        } else if ( tag && char === '>' ) {
+            tag = false;
+        }
+        if ( char === '&' ) {
             escaped = true;
-            continue;
+        } else if ( escaped && char === ';' ) {
+            escaped = false;
         }
 
-        pos += 1;
         if ( pos === next ) {
-            if ( open ) {
+            if ( open && !tag && char !== '>' ) {
                 marked += '<mark class="important">';
-                open = false;
-            } else {
+                open    = false;
+                next    = points.shift();
+            } else if ( !open && !escaped ) {
                 marked += '</mark>';
-                open = true;
+                open    = true;
+                next    = points.shift();
             }
-            next = points.shift();
         }
+
+        if ( !escaped && !tag && char !== '>' ) pos += 1;
+        marked += char;
     }
 
     return marked;
@@ -82,7 +78,6 @@ export default function highlight(root) {
             let [code, points] = extractPoints(i.value);
             let html = hljs.highlightAuto(code, [lang]).value;
             html = markPoints(html, points);
-            console.log(html)
             html = '<pre>' +
                 html.split('\n')
                     .map( j => j.trim() === '' ? '&nbsp;' : j )
