@@ -22,7 +22,7 @@
     "cssnano":        "^3.0.1",
     "postcss":        "^5.0.5",
     "chalk":          "^1.1.1",
-    "yargs":          "^3.24.0"
+    "yargs":          "^3.25.0"
   },
   "devDependencies": {
     "gulp-json-editor": "2.2.1",
