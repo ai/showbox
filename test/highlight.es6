@@ -38,4 +38,10 @@ describe('highlight()', () => {
             '<mark class="important">one</mark>');
     });
 
+    it('marks important HTML', () => {
+        let root = build('```js\na ***&&*** b\n```');
+        expect(root.children[0].value).to.include(
+            '<mark class="important">&amp;&amp;</mark>');
+    });
+
 });
